@@ -1,0 +1,341 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TechNest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-09 07:39-0500\n"
+"PO-Revision-Date: 2024-11-09 09:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Spanish <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: TechNest/settings.py:156
+msgid "English"
+msgstr "Inglés"
+
+#: TechNest/settings.py:157
+msgid "Spanish"
+msgstr "Español"
+
+#: billing/views.py:13
+msgid "factura.pdf"
+msgstr "factura.pdf"
+
+#: billing/views.py:24
+#, python-brace-format
+msgid "Factura de {first_name} {last_name}"
+msgstr "Factura de {first_name} {last_name}"
+
+#: billing/views.py:25
+#, python-brace-format
+msgid "Cliente: {email}"
+msgstr "Cliente: {email}"
+
+#: billing/views.py:26
+msgid "Productos:"
+msgstr "Productos:"
+
+#: billing/views.py:29
+#, python-brace-format
+msgid "{product_name} x {quantity}..........${total_price:.2f}"
+msgstr "{product_name} x {quantity}..........${total_price:.2f}"
+
+#: billing/views.py:35
+#, python-brace-format
+msgid "Total: ${total_price:.0f}"
+msgstr "Total: ${total_price:.0f}"
+
+#: home/templates/base.html:69 home/templates/base.html:75
+#: home/templates/base.html:167
+msgid "TechNest"
+msgstr "TechNest"
+
+#: home/templates/base.html:76
+msgid "Toggle navigation"
+msgstr "Alternar navegación"
+
+#: home/templates/base.html:86
+msgid "Computers"
+msgstr "Computadoras"
+
+#: home/templates/base.html:94
+msgid "Screens"
+msgstr "Pantallas"
+
+#: home/templates/base.html:102
+msgid "Keyboards"
+msgstr "Teclados"
+
+#: home/templates/base.html:110 product/models.py:10
+msgid "Mouse"
+msgstr "Ratón"
+
+#: home/templates/base.html:118
+msgid "Printers"
+msgstr "Impresoras"
+
+#: home/templates/base.html:123
+msgid "Search products..."
+msgstr "Buscar productos..."
+
+#: home/templates/base.html:123 home/templates/base.html:124
+msgid "Search"
+msgstr "Buscar"
+
+#: home/templates/base.html:141
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: home/templates/base.html:150
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: home/templates/home.html:82 product/templates/productDetail.html:65
+#: product/templates/productsByCategory.html:82
+msgid "Add to cart"
+msgstr "Agregar al carrito"
+
+#: home/templates/home.html:89 product/templates/productsByCategory.html:89
+msgid "There aren't any products available."
+msgstr "No hay productos disponibles."
+
+#: home/templates/home.html:95 product/templates/productsByCategory.html:95
+msgid "Add Product"
+msgstr "Agregar producto"
+
+#: order/models.py:7 shoppingCart/models.py:9 user/models.py:17
+msgid "Client"
+msgstr "Cliente"
+
+#: order/models.py:8 product/models.py:27
+msgid "Products"
+msgstr "Productos"
+
+#: order/models.py:9
+msgid "State"
+msgstr "Estado"
+
+#: order/models.py:10 review/models.py:15
+msgid "Date"
+msgstr "Fecha"
+
+#: order/models.py:11
+msgid "Total"
+msgstr "Total"
+
+#: order/models.py:14 order/models.py:22
+msgid "Order"
+msgstr "Orden"
+
+#: order/models.py:15
+msgid "Orders"
+msgstr "Órdenes"
+
+#: order/models.py:23 product/models.py:26 shoppingCart/models.py:7
+msgid "Product"
+msgstr "Producto"
+
+#: order/models.py:24 shoppingCart/models.py:8
+msgid "Quantity"
+msgstr "Cantidad"
+
+#: order/models.py:28
+msgid "Order Product"
+msgstr "Producto de la orden"
+
+#: order/models.py:29
+msgid "Order Products"
+msgstr "Productos de la orden"
+
+#: product/models.py:7
+msgid "Computer"
+msgstr "Computadora"
+
+#: product/models.py:8
+msgid "Screen"
+msgstr "Pantalla"
+
+#: product/models.py:9
+msgid "Keyboard"
+msgstr "Teclado"
+
+#: product/models.py:11
+msgid "Printer"
+msgstr "Impresora"
+
+#: product/models.py:14
+msgid "Name"
+msgstr "Nombre"
+
+#: product/models.py:15
+msgid "Description"
+msgstr "Descripción"
+
+#: product/models.py:16
+msgid "Price"
+msgstr "Precio"
+
+#: product/models.py:17
+msgid "Brand"
+msgstr "Marca"
+
+#: product/models.py:18
+msgid "Category"
+msgstr "Categoría"
+
+#: product/models.py:19
+msgid "Stock"
+msgstr "Inventario"
+
+#: product/models.py:20
+msgid "Image"
+msgstr "Imagen"
+
+#: product/templates/productDetail.html:68
+msgid "Edit product"
+msgstr "Editar producto"
+
+#: product/templates/productDetail.html:69
+msgid "Delete product"
+msgstr "Eliminar producto"
+
+#: product/templates/productDetail.html:81
+msgid "Review submitted successfully!"
+msgstr "Reseña enviada exitosamente"
+
+#: product/templates/productDetail.html:84
+msgid "Leave a Comment"
+msgstr "Deja un comentario"
+
+#: product/templates/productDetail.html:91
+msgid "Submit"
+msgstr "Enviar"
+
+#: product/templates/productDetail.html:103
+msgid "Comments"
+msgstr "Comentarios"
+
+#: review/models.py:8
+msgid "Reviewing Client"
+msgstr "Cliente revisor"
+
+#: review/models.py:9
+msgid "Product Reviewed"
+msgstr "Producto revisado"
+
+#: review/models.py:12
+msgid "Rating"
+msgstr "Calificación"
+
+#: review/models.py:14
+msgid "Comment"
+msgstr "Comentario"
+
+#: review/models.py:19
+msgid "Review"
+msgstr "Reseña"
+
+#: review/models.py:20
+msgid "Reviews"
+msgstr "Reseñas"
+
+#: shoppingCart/models.py:10
+msgid "Date Added"
+msgstr "Fecha agregada"
+
+#: shoppingCart/templates/shoppingCart.html:13
+msgid "Shopping Cart"
+msgstr "Carrito de Compras"
+
+#: shoppingCart/templates/shoppingCart.html:122
+msgid "Your Shopping Cart"
+msgstr "Tu carrito de compras"
+
+#: shoppingCart/templates/shoppingCart.html:132
+msgid "Price:"
+msgstr "Precio:"
+
+#: shoppingCart/templates/shoppingCart.html:133
+msgid "Remove"
+msgstr "Eliminar"
+
+#: shoppingCart/templates/shoppingCart.html:137
+msgid "Your cart is empty."
+msgstr "Tu carrito está vacío."
+
+#: shoppingCart/templates/shoppingCart.html:141
+msgid "Total Price:"
+msgstr "Precio total:"
+
+#: shoppingCart/templates/shoppingCart.html:145
+msgid "Buy Now"
+msgstr "Comprar ahora"
+
+#: shoppingCart/views.py:22
+msgid "Product added to cart successfully!"
+msgstr "¡Producto agregado al carrito exitosamente!"
+
+#: shoppingCart/views.py:29
+msgid "Product removed from cart successfully!"
+msgstr "¡Producto eliminado del carrito exitosamente!"
+
+#: user/models.py:9 user/models.py:21
+msgid "User"
+msgstr "Usuario"
+
+#: user/models.py:10
+msgid "Address"
+msgstr "Dirección"
+
+#: user/models.py:11
+msgid "Phone"
+msgstr "Teléfono"
+
+#: user/models.py:18
+msgid "Clients"
+msgstr "Clientes"
+
+#: user/models.py:24
+msgid "Administrator"
+msgstr "Administrador"
+
+#: user/models.py:25
+msgid "Administrators"
+msgstr "Administradores"
+
+#: user/views.py:27
+msgid "Registration successful. Welcome!"
+msgstr "Registro exitoso. ¡Bienvenido!"
+
+#: user/views.py:48
+msgid "Administrator account created successfully. Welcome!"
+msgstr "Cuenta de administrador creada exitosamente. ¡Bienvenido!"
+
+#: user/views.py:65
+#, python-brace-format
+msgid "Welcome {username}!"
+msgstr "¡Bienvenido {username}!"
+
+#: user/views.py:68 user/views.py:70
+msgid "Invalid username or password."
+msgstr "Nombre de usuario o contraseña incorrectos."
+
+#: user/views.py:83
+msgid "Product added successfully"
+msgstr "Producto agregado exitosamente"
+
+#: user/views.py:98
+msgid "Product updated successfully"
+msgstr "Producto actualizado exitosamente"
+
+#: user/views.py:111
+msgid "Product deleted successfully"
+msgstr "Producto eliminado exitosamente"
