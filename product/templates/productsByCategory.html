@@ -1,0 +1,368 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+<style>
+    :root {
+        --gradient-1: linear-gradient(135deg, #6366f1, #8b5cf6);
+        --gradient-2: linear-gradient(135deg, #f43f5e, #ec4899);
+        --gradient-3: linear-gradient(135deg, #0ea5e9, #6366f1);
+        --card-radius: 20px;
+    }
+
+    .product-grid {
+        background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+        min-height: 100vh;
+        padding: 3rem 0;
+    }
+
+    /* Fancy Weather Widget */
+    .weather-widget {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: var(--card-radius);
+        padding: 1.5rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .weather-widget::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-3);
+        opacity: 0.1;
+        z-index: 0;
+    }
+
+    .weather-widget-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .weather-icon {
+        font-size: 2.5rem;
+        background: var(--gradient-3);
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: pulse 2s infinite;
+    }
+
+    /* Product Card Styles */
+    .product-card {
+        border: none;
+        border-radius: var(--card-radius);
+        background: white;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        height: 100%;
+    }
+
+    .product-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-1);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 1;
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card:hover::before {
+        opacity: 0.1;
+    }
+
+    .product-image-wrapper {
+        position: relative;
+        padding-top: 75%;
+        overflow: hidden;
+    }
+
+    .product-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card:hover .product-image {
+        transform: scale(1.1) rotate(2deg);
+    }
+
+    .product-body {
+        padding: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .product-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 1rem;
+    }
+
+    .product-title a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .product-footer {
+        padding: 1.5rem 2rem;
+        background: #f8fafc;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #0f172a;
+    }
+
+    .price-currency {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #64748b;
+    }
+
+    .btn-cart {
+        background: var(--gradient-1);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-cart::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-2);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .btn-cart:hover::before {
+        opacity: 1;
+    }
+
+    .btn-cart span {
+        position: relative;
+        z-index: 1;
+    }
+
+    .btn-cart i {
+        margin-right: 0.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Add Product Button */
+    .add-product-wrapper {
+        margin-top: 4rem;
+        text-align: center;
+        position: relative;
+    }
+
+    .btn-add-product {
+        background: var(--gradient-2);
+        color: white;
+        border: none;
+        padding: 1rem 3rem;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(244, 63, 94, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-add-product::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-1);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .btn-add-product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(244, 63, 94, 0.4);
+    }
+
+    .btn-add-product:hover::before {
+        opacity: 1;
+    }
+
+    .btn-add-product span {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: white;
+        border-radius: var(--card-radius);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .empty-state i {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        background: var(--gradient-1);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .empty-state p {
+        font-size: 1.2rem;
+        color: #64748b;
+    }
+
+    /* Animations */
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .product-grid {
+            padding: 2rem 1rem;
+        }
+
+        .product-card {
+            margin-bottom: 2rem;
+        }
+
+        .product-body {
+            padding: 1.5rem;
+        }
+
+        .product-footer {
+            padding: 1rem 1.5rem;
+        }
+    }
+</style>
+
+<div class="product-grid">
+    <div class="container">
+        {% if weather %}
+            <div class="weather-widget">
+                <div class="weather-widget-content">
+                    <i class="fas fa-cloud weather-icon"></i>
+                    <div>
+                        <h3 class="h5 mb-0">{{ weather.city }}</h3>
+                        <p class="mb-0">{{ weather.description }}, {{ weather.temperature }}°C</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        
+        <div class="row g-4">
+            {% for product in products %}
+                <div class="col-md-6 col-lg-4">
+                    <article class="product-card">
+                        <div class="product-image-wrapper">
+                            <a href="{% url 'productDetail' product.id %}">
+                                <img src="{{ product.image.url }}" 
+                                     class="product-image" 
+                                     alt="{{ product.name }}"
+                                     loading="lazy">
+                            </a>
+                        </div>
+                        <div class="product-body">
+                            <h2 class="product-title">
+                                <a href="{% url 'productDetail' product.id %}">{{ product.name }}</a>
+                            </h2>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-currency">$</span>
+                                {{ product.price|floatformat:"0g" }}
+                            </div>
+                            {% if not user.is_staff and user.is_authenticated %}
+                                <a href="{% url 'shoppingCart:add_to_cart' product.id %}" 
+                                   class="btn btn-cart">
+                                    <span>
+                                        <i class="fas fa-shopping-cart"></i>
+                                        {% trans "Add to cart" %}
+                                    </span>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </article>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <div class="empty-state">
+                        <i class="fas fa-box-open"></i>
+                        <p>{% trans "There aren't any products available." %}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if user.is_staff %}
+            <div class="add-product-wrapper">
+                <a class="btn btn-add-product" href="{% url 'add_product' %}">
+                    <span>
+                        <i class="fas fa-plus-circle me-2"></i>
+                        {% trans "Add Product" %}
+                    </span>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

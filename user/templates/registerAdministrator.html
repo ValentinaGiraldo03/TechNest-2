@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Administrator</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar {
+            background-color: #343a40;
+            padding: 1rem 2rem;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 900px; /* Más ancho para un rectángulo */
+            width: 100%;
+            min-height: 300px; /* Altura mínima para darle más forma rectangular */
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #343a40;
+            text-align: center;
+        }
+
+        .form-control {
+            border: 2px solid #343a40;
+            border-radius: 8px;
+        }
+
+        .btn-block {
+            background-color: #343a40;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn-block:hover {
+            background-color: #23272b;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #f8f9fa;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000000;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">TechNest</a>
+</nav>
+
+<div class="content">
+    <div class="form-container">
+        <h2 class="text-center">Register Administrator</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            <div class="d-grid mt-3">
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 TechNest
+</footer>
+
+<!-- Bootstrap 5 JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

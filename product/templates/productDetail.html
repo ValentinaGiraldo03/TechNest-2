@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<style>
+    .card {
+        border: 2px solid #007bff;  
+        border-radius: 8px;         
+        padding: 20px;
+        margin-bottom: 50px;        
+    }
+
+    .btn-gradient-primary {
+        background: linear-gradient(90deg, rgb(26, 51, 164) 0%, rgb(26, 51, 164) 100%);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        transition: background 0.3s ease, transform 0.2s ease;
+        border-radius: 0.375rem;
+    }
+
+    .btn-gradient-primary:hover {
+        background: linear-gradient(90deg, rgba(26, 51, 164) 0%, rgba(26, 51, 164) 100%);
+        transform: scale(1.05);
+    }
+
+    .flex.items-start {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    }
+
+    .bg-gradient-to-r {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .text-gradient {
+        background: linear-gradient(90deg, rgb(8, 59, 180) 0%, rgba(8, 59, 180) 100%);
+        -webkit-background-clip: text; 
+        background-clip: text;         
+        -webkit-text-fill-color: transparent; 
+    }
+
+    .display-6 {
+        font-size: 2.5rem;
+        font-weight: 300; 
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.name }}">
+            </div>
+        </div>
+        <div class="col-md-6 d-flex flex-column justify-content-center">
+            <h2 class="display-5">{{ product.name }}</h2>
+            <p class="lead">{{ product.description }}</p>
+            <h4 class="text-success">${{ product.price|floatformat:"0g" }}</h4>
+            {%  if user.is_authenticated and not user.is_staff  %}
+                <a href="{% url 'shoppingCart:add_to_cart' product.id %}" class="btn btn-lg btn-outline-primary mt-4">{% trans "Add to cart" %}</a>
+            {% endif %}
+            {% if user.is_staff %}
+                <a class="btn btn-lg btn-outline-primary mt-4" href="{% url 'edit_product' product.id %}">{% trans "Edit product" %}</a>
+                <a class="btn btn-lg btn-outline-primary mt-4" href="{% url 'delete_product' product.id %}">{% trans "Delete product" %}</a>
+            {% endif %}
+        </div>
+    </div>
+   
+    {% if user.is_authenticated and not user.is_staff %}
+        <div class="container mt-5 mb-5">  
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg p-4 bg-white rounded border border-primary" style="margin-bottom: 50px;">
+                        {% if sent_review %}
+                            <div class="alert alert-success text-center" role="alert">
+                                {% trans "Review submitted successfully!" %}
+                            </div>
+                        {% else %}  
+                            <h4 class="text-center text-primary mb-4">{% trans "Leave a Comment" %}</h4>
+                            <form method="post" class="text-center">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    {{ review_form.as_p }}
+                                </div>
+                                <button type="submit" class="btn btn-lg btn-gradient-primary btn-block mt-4">
+                                    {% trans "Submit" %}
+                                </button>
+                            </form>      
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}    
+
+    <br>
+    <h3 class="display-6 fw-light text-center text-gradient mb-5">
+        {% trans "Comments" %}
+    </h3>    
+
+    <div class="relative overflow-x-auto shadow-lg sm:rounded-lg bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+        {% for review in reviews %}
+            <div class="flex items-start space-x-4 p-4 bg-white dark:bg-gray-900 rounded-lg shadow-md mb-4">
+                <div class="flex-shrink-0">
+                    <span class="inline-flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white">
+                        {{ review.reviewingClient.username|slice:":1" | upper }} 
+                    </span>
+                </div>
+                <div class="flex flex-col w-full">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-lg font-semibold text-gray-900 dark:text-white">{{ review.reviewingClient.username }}</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">{{ review.date }}</span>
+                    </div>
+                    <p class="text-sm font-light text-gray-700 dark:text-gray-300">
+                        {{ review.comment | linebreaks }}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <br>
+</div>
+{% endblock %}
